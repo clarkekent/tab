@@ -9,6 +9,7 @@ import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 /**
  * Created by dzm on 7/9/2015.
@@ -17,7 +18,9 @@ public class SearchResultsActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_noresult);
 
+        searchResult = (TextView) findViewById(R.id.searchresult);
         handleIntent(getIntent());
     }
 
@@ -59,6 +62,10 @@ public class SearchResultsActivity extends Activity {
     }
 
     private void handleIntent(Intent searchIntent){
-        setContentView(R.layout.layout_noresult);
+        if(Intent.ACTION_SEARCH.equals(searchIntent.getAction())){
+            searchResult.setText(searchIntent.getStringExtra(SearchManager.QUERY));
+        }
     }
+
+    private TextView searchResult;
 }
