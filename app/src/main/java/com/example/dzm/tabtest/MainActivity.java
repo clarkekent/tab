@@ -2,7 +2,7 @@ package com.example.dzm.tabtest;
 
 import android.app.Activity;
 import android.app.SearchManager;
-import android.support.v7.app.ActionBarActivity;
+import android.content.ComponentName;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,8 +27,9 @@ public class MainActivity extends Activity {
                 (SearchManager) getSystemService(SEARCH_SERVICE);
         SearchView searchView =
                 (SearchView) menu.findItem(R.id.search).getActionView();
+        ComponentName aComponentName = new ComponentName(this, SearchResultsActivity.class);
         searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
+                searchManager.getSearchableInfo(aComponentName));
 
         return true;
     }
